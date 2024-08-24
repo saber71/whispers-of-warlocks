@@ -1,4 +1,4 @@
-package core.injectify
+package heraclius.core.injectify
 
 /**
  * Injectable注解用于标识一个类是可以被自动注入依赖的

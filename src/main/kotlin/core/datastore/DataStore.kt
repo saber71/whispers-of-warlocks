@@ -1,6 +1,6 @@
 package heraclius.core.datastore
 
-import core.Singleton
+import heraclius.core.Singleton
 
 /**
  * DataStore 类用于存储和管理应用程序中的数据

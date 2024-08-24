@@ -1,4 +1,4 @@
-package core.dispatcher
+package heraclius.core.dispatcher
 
 import java.util.function.Consumer
 

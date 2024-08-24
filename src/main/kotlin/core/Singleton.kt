@@ -1,4 +1,4 @@
-package core
+package heraclius.core
 
 /**
  * 单例模式类，用于管理不同类的单例实例
@@ -25,8 +25,8 @@ object Singleton {
                 throw RuntimeException(e)
             }
         }
-        val result= instances[cls]
-        if (result is T)return result
+        val result = instances[cls]
+        if (result is T) return result
         throw RuntimeException("instance is not ${T::class.java}")
     }
 

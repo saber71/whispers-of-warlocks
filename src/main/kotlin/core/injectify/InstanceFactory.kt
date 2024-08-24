@@ -1,4 +1,4 @@
-package core.injectify
+package heraclius.core.injectify
 
 import heraclius.getAnnotationValue
 import org.reflections.Reflections
@@ -7,7 +7,7 @@ import org.reflections.Reflections
 /**
  * 包装了Reflections实例，用于方便地进行反射操作。
  */
-class BeanFactory(packageName: String) {
+class InstanceFactory(packageName: String) {
     /**
      * 创建Reflections实例，用于进行反射操作
      */
@@ -58,7 +58,7 @@ class BeanFactory(packageName: String) {
      * @param annotation 指定的注解类型。
      * @return 包含该注解的所有类的列表。
      */
-    fun getClasses(annotation: Class<out Annotation>): List<Class<*>> {
+    fun getClassesByAnnotation(annotation: Class<out Annotation>): List<Class<*>> {
         return reflections.getTypesAnnotatedWith(annotation).toList()
     }
 
