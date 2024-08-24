@@ -5,7 +5,7 @@ package heraclius.core
  */
 object Singleton {
     // 存储不同类的单例实例
-    val instances: MutableMap<Class<*>, Any> = HashMap()
+    private val instances: MutableMap<Class<*>, Any> = HashMap()
 
     /**
      * 获取指定类的单例实例
@@ -15,7 +15,7 @@ object Singleton {
      * @return 该类的单例实例
      * @throws RuntimeException 如果无法创建新实例
      */
-    inline fun <reified T : Any> get(cls: Class<T>): T {
+    fun <T : Any> get(cls: Class<T>): T {
         // 检查是否已经存在该类的实例
         if (!instances.containsKey(cls)) {
             try {
@@ -25,9 +25,8 @@ object Singleton {
                 throw RuntimeException(e)
             }
         }
-        val result = instances[cls]
-        if (result is T) return result
-        throw RuntimeException("instance is not ${T::class.java}")
+        @Suppress("UNCHECKED_CAST")
+        return instances[cls] as T
     }
 
     // 注册单例实例

@@ -7,6 +7,8 @@ import org.reflections.Reflections
  *
  * 此类作为处理反射相关任务的基础类，定义了一个必须由子类实现的方法doReact。
  * 该方法的目的是对通过Reflections库扫描得到的类信息进行处理和响应。
+ *
+ * 子类构造函数必须是无参的
  */
 abstract class ReflectionReactor {
     /**

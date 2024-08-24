@@ -14,3 +14,26 @@ fun <A : Annotation> getAnnotationValue(clazz: Class<*>, annotationClass: Class<
     @Suppress("UNCHECKED_CAST")
     return clazz.annotations.firstOrNull { it.annotationClass == annotationClass } as? A
 }
+
+/**
+ * 读取指定类的所有属性，并返回一个列表，其中包含这些属性的值。
+ *
+ * @param obj 要读取属性的对象
+ * @param clazz 要读取属性的类
+ * @return 包含属性值的列表
+ */
+fun <T> readProperties(obj: Any, clazz: Class<T>): List<T> {
+    val cls = obj.javaClass
+    val properties = cls.declaredFields
+    val result = ArrayList<T>()
+
+    for (property in properties) {
+        property.isAccessible = true
+        if (clazz.isAssignableFrom(property.type)) {
+            val value = property.get(obj)
+            @Suppress("UNCHECKED_CAST")
+            result.add(value as T)
+        }
+    }
+    return result.toList()
+}
