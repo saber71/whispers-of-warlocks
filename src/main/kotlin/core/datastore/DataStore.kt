@@ -9,10 +9,10 @@ import core.Singleton
  */
 class DataStore {
     // 存储 DataStoreKey 与对应数据对象的映射
-    val dataMap: MutableMap<Any, Any> = HashMap()
+    private val dataMap: MutableMap<Any, Any> = HashMap()
 
     // 存储 DataStoreKey 类型与该类型键关联的值列表的映射
-    val keyClsMapValues: MutableMap<Class<out DataStoreKey<*>>, ArrayList<Any>> = HashMap()
+    private val keyClsMapValues: MutableMap<Class<out DataStoreKey<*>>, MutableList<Any>> = HashMap()
 
     // 清除所有数据
     fun clear() {
@@ -20,7 +20,7 @@ class DataStore {
         keyClsMapValues.clear()
     }
 
-    fun <V> set(cls:Class<DataStoreKey<V>>, v:V):V{
+    fun <V> set(cls: Class<DataStoreKey<V>>, v: V): V {
         return this.set(Singleton.get(cls), v)
     }
 
@@ -64,16 +64,11 @@ class DataStore {
      * @param <V> 期望返回的值的类型
      * @return 与键关联的值
      */
-    inline fun <reified V> get(key: DataStoreKey<V>): V? {
+    fun <V> get(key: DataStoreKey<V>): V? {
         val id = key.id()
         val value = this.dataMap[id]
-
-        // 确保 value 不为 null 并且类型正确
-        if (value != null && value is V) {
-            return value
-        } else {
-            return null
-        }
+        @Suppress("UNCHECKED_CAST")
+        return value as V?
     }
 
     /**
@@ -82,8 +77,8 @@ class DataStore {
      * @param key 字符串类型的键
      * @param <V> 期望返回的值的类型
      * @return 与键关联的值，如果键不存在则返回 null
-    </V> */
-    inline fun <reified V> get(key: String): V?{
+     */
+    fun <V> get(key: String): V? {
         return this.get(DataStoreKey<V>(key))
     }
 
@@ -97,7 +92,7 @@ class DataStore {
      * @return 与给定键相关联的值
      * @throws RuntimeException 如果数据存储中找不到给定的键
     </V> */
-    inline fun <reified V> fetch(key: DataStoreKey<V>): V {
+    fun <V> fetch(key: DataStoreKey<V>): V {
         val result = this.get(key) ?: throw RuntimeException("DataStoreKey not found")
         return result
     }
@@ -109,7 +104,7 @@ class DataStore {
      * @param <V> 泛型参数，表示返回的值的类型
      * @return 与键相关联的值
     </V> */
-    inline fun <reified V> fetch(key: String): V {
+    fun <V> fetch(key: String): V {
         return this.fetch(DataStoreKey(key))
     }
 
@@ -121,9 +116,10 @@ class DataStore {
      * @param <V>      列表中值的类型
      * @return 与指定键类型关联的值列表，如果类型不存在则返回空列表
     </V> */
-    inline fun <reified V> getAll(keyClass: Class<DataStoreKey<V>>): List<V> {
+    fun <V> getAll(keyClass: Class<DataStoreKey<V>>): List<V> {
         val list = keyClsMapValues[keyClass] ?: return emptyList()
-        return list.filterIsInstance<V>()
+        @Suppress("UNCHECKED_CAST")
+        return list.toList() as List<V>
     }
 
     /**
