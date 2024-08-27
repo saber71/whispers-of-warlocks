@@ -45,17 +45,14 @@ class DataStore {
     }
 
     /**
-     * 使用字符串键设置数据，内部会转换为 DataStoreKey 对象
-     *
-     * @param key 字符串类型的键
+     * @param key 任意类型的键
      * @param v   与键关联的值
      * @return 设置的值
      */
-    fun <V> set(key: String, v: V): V {
-        this.set(DataStoreKey(key), v)
+    fun <V : Any> set(key: Any, v: V): V {
+        dataMap[key] = v
         return v
     }
-
 
     /**
      * 根据给定的 DataStoreKey 获取存储的数据
@@ -74,12 +71,13 @@ class DataStore {
     /**
      * 使用字符串键获取数据，内部会转换为 DataStoreKey 对象
      *
-     * @param key 字符串类型的键
+     * @param key 任意类型的键
      * @param <V> 期望返回的值的类型
      * @return 与键关联的值，如果键不存在则返回 null
      */
-    fun <V> get(key: String): V? {
-        return this.get(DataStoreKey<V>(key))
+    fun <V> get(key: Any): V? {
+        @Suppress("UNCHECKED_CAST")
+        return this.dataMap[key] as V?
     }
 
     /**
@@ -100,14 +98,14 @@ class DataStore {
     /**
      * 根据字符串键获取数据存储中的值
      *
-     * @param key 字符串形式的键
+     * @param key 任意形式的键
      * @param <V> 泛型参数，表示返回的值的类型
      * @return 与键相关联的值
     </V> */
-    fun <V> fetch(key: String): V {
-        return this.fetch(DataStoreKey(key))
+    fun <V> fetch(key: Any): V {
+        val result = this.get<V>(key) ?: throw RuntimeException("DataStoreKey not found")
+        return result
     }
-
 
     /**
      * 获取与指定 DataStoreKey 类型关联的所有值列表
@@ -135,11 +133,11 @@ class DataStore {
     /**
      * 使用字符串键检查数据是否存在，内部会转换为 DataStoreKey 对象
      *
-     * @param key 字符串类型的键
+     * @param key 任意类型的键
      * @return 如果键存在则返回 true，否则返回 false
      */
-    fun <Value> has(key: String): Boolean {
-        return this.has(DataStoreKey<Value>(key))
+    fun has(key: Any): Boolean {
+        return dataMap.containsKey(key)
     }
 
     /**
@@ -151,14 +149,15 @@ class DataStore {
     fun <Value> remove(key: DataStoreKey<Value>) {
         val keyClass = key.javaClass
         keyClsMapValues[keyClass]?.remove(dataMap.remove(key))
+        dataMap.remove(key.id())
     }
 
     /**
      * 使用字符串键移除数据，内部会转换为 DataStoreKey 对象
      *
-     * @param key 字符串类型的键
+     * @param key 任意类型的键
      */
-    fun <Value> remove(key: String) {
-        this.remove(DataStoreKey<Value>(key))
+    fun remove(key: Any) {
+        dataMap.remove(key)
     }
 }
