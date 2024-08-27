@@ -20,6 +20,10 @@ class DataStore {
         keyClsMapValues.clear()
     }
 
+    fun <T : DataStoreKey<*>> put(data: T) {
+        this.set(data, data)
+    }
+
     fun <V> set(cls: Class<DataStoreKey<V>>, v: V): V {
         return this.set(Singleton.get(cls), v)
     }
@@ -111,10 +115,9 @@ class DataStore {
      * 获取与指定 DataStoreKey 类型关联的所有值列表
      *
      * @param keyClass DataStoreKey 的类类型
-     * @param <V>      列表中值的类型
      * @return 与指定键类型关联的值列表，如果类型不存在则返回空列表
     </V> */
-    fun <V> getAll(keyClass: Class<DataStoreKey<V>>): List<V> {
+    fun <V, T : DataStoreKey<V>> getAll(keyClass: Class<T>): List<V> {
         val list = keyClsMapValues[keyClass] ?: return emptyList()
         @Suppress("UNCHECKED_CAST")
         return list.toList() as List<V>

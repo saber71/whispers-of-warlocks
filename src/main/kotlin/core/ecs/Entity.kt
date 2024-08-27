@@ -1,6 +1,9 @@
 package heraclius.core.ecs
 
 import heraclius.core.datastore.DataStore
+import heraclius.core.datastore.DataStoreKey
+
+var id = 0
 
 /**
  * 实体类，用于管理实体组件
@@ -8,9 +11,12 @@ import heraclius.core.datastore.DataStore
  *
  * @param components 初始化时添加的实体组件数组
  */
-class Entity(vararg components: EntityComponent) {
+open class Entity(vararg components: EntityComponent) : DataStoreKey<Any>(id++) {
     // 数据存储对象，用于管理实体的组件
     private val dataStore = DataStore()
+
+    // 实体组件列表
+    private val components = ArrayList<EntityComponent>()
 
     // 初始化时添加传入的组件
     init {
@@ -30,6 +36,7 @@ class Entity(vararg components: EntityComponent) {
                 throw RuntimeException("Component $component already exists")
             }
             dataStore.set(component.javaClass, component)
+            this.components.add(component)
         }
         return this
     }
@@ -43,6 +50,7 @@ class Entity(vararg components: EntityComponent) {
     fun removeComponent(vararg components: EntityComponent): Entity {
         for (component in components) {
             dataStore.remove(component.javaClass)
+            this.components.remove(component)
         }
         return this
     }
@@ -66,5 +74,10 @@ class Entity(vararg components: EntityComponent) {
      */
     fun fetchComponent(componentClass: Class<out EntityComponent>): EntityComponent {
         return dataStore.fetch(componentClass)
+    }
+
+    // 获取实体中的所有组件
+    fun getAllComponents(): List<EntityComponent> {
+        return components
     }
 }

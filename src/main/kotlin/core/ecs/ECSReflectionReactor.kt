@@ -16,10 +16,13 @@ class ECSReflectionReactor : ReflectionReactor() {
     override fun doReact(reflections: Reflections) {
         // 获取所有 EntitySystem 的子类
         val systemClasses = reflections.getSubTypesOf(EntitySystem::class.java)
+        val list = ArrayList<EntitySystem>()
         // 遍历所有系统类，并创建或获取其实例注册为单例
         for (systemClass in systemClasses) {
             val instance = InstanceFactory.getOrCreateInstance(systemClass)
             Singleton.register(instance)
+            list.add(instance)
         }
+        Ecs.systemList = list
     }
 }
