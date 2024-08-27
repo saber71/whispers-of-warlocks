@@ -7,7 +7,7 @@ import heraclius.getAnnotationValue
 /**
  * 实例工厂类，实现依赖注入
  */
-class InstanceFactory {
+object InstanceFactory {
     /**
      * 存储已实例化的类的映射，用于缓存实例化的对象。
      */
