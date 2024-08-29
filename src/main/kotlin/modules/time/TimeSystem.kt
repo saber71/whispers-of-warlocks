@@ -16,11 +16,11 @@ class TimeSystem : EntitySystem() {
         // 获取第一个时间实体
         val timeEntity = Ecs.first(TimeEntity::class.java)
         // 如果实体有停止组件，则退出应用
-        if (timeEntity.hasComponent(StopComponent::class.java)) {
-            exitProcess(timeEntity.fetchComponentValue(StopComponent::class.java))
+        if (timeEntity.hasComponent(StopTimeComponent::class.java)) {
+            exitProcess(timeEntity.fetchComponentValue(StopTimeComponent::class.java))
         }
         // 如果实体有暂停组件，则不执行后续时间操作
-        if (timeEntity.hasComponent(PauseComponent::class.java)) return
+        if (timeEntity.hasComponent(PauseTimeComponent::class.java)) return
         // 检查并处理日期增加组件，如果有则增加日期
         val dataPlus = timeEntity.getComponentValue(DataPlusComponent::class.java)
         if (dataPlus != null) {

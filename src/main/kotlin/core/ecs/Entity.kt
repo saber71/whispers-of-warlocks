@@ -1,9 +1,8 @@
 package heraclius.core.ecs
 
+import heraclius.core.IDGenerator
 import heraclius.core.datastore.DataStore
 import heraclius.core.datastore.DataStoreKey
-
-var id: UInt = 0u
 
 /**
  * 实体类，用于管理实体组件
@@ -11,9 +10,9 @@ var id: UInt = 0u
  *
  * @param components 初始化时添加的实体组件数组
  */
-open class Entity(vararg components: EntityComponent<*>) : DataStoreKey<Any>(id++) {
+open class Entity(vararg components: EntityComponent<*>) : DataStoreKey<Any>(IDGenerator.get()) {
     // 数据存储对象，用于管理实体的组件
-    private val dataStore = DataStore()
+    protected val dataStore = DataStore()
 
     // 实体组件列表
     private val components = ArrayList<EntityComponent<*>>()
