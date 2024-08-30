@@ -1,6 +1,6 @@
 package heraclius.core.datastore
 
-import heraclius.core.Singleton
+import heraclius.getParentClasses
 
 /**
  * DataStore 类用于存储和管理应用程序中的数据
@@ -12,7 +12,13 @@ class DataStore {
     private val dataMap: MutableMap<Any, Any> = HashMap()
 
     // 存储 DataStoreKey 类型与该类型键关联的值列表的映射
-    private val keyClsMapValues: MutableMap<Class<out DataStoreKey<*>>, MutableList<Any>> = HashMap()
+    private val keyClsMapValues: MutableMap<Class<*>, MutableList<Any>> = HashMap()
+
+    private val classMapSuperClasses = HashMap<Class<*>, List<Class<*>>>()
+
+    private fun getParentClassesBy(cls: Class<*>): List<Class<*>> {
+        return classMapSuperClasses.computeIfAbsent(cls) { _ -> getParentClasses(cls) }
+    }
 
     // 清除所有数据
     fun clear() {
@@ -21,11 +27,7 @@ class DataStore {
     }
 
     fun <T : DataStoreKey<*>> put(data: T) {
-        this.set(data, data)
-    }
-
-    fun <V> set(cls: Class<DataStoreKey<V>>, v: V): V {
-        return this.set(Singleton.get(cls), v)
+        this.set(data.id(), data)
     }
 
     /**
@@ -37,24 +39,18 @@ class DataStore {
      * @param <V> 值的类型
      * @return 设置的值
     </V> */
-    fun <V> set(key: DataStoreKey<V>, v: V): V {
-        val keyClass = key.javaClass
-        val list = keyClsMapValues.computeIfAbsent(keyClass) { _ -> ArrayList() }
-        val oldValue = dataMap.put(key.id(), v as Any)
-        if (oldValue != null) {
-            list.remove(oldValue)
+    fun <V> set(key: Any, v: V, ignoreSuperClasses: Boolean = false): V {
+        val oldValue = dataMap.put(key, v as Any)
+        if (key is Class<*>) return v
+        if (ignoreSuperClasses) return v
+        val superClasses = getParentClassesBy(key::class.java)
+        for (superClass in superClasses) {
+            val list = keyClsMapValues.computeIfAbsent(superClass) { _ -> ArrayList() }
+            if (oldValue != null) {
+                list.remove(oldValue)
+            }
+            list.add(v)
         }
-        list.add(v)
-        return v
-    }
-
-    /**
-     * @param key 任意类型的键
-     * @param v   与键关联的值
-     * @return 设置的值
-     */
-    fun <V : Any> set(key: Any, v: V): V {
-        dataMap[key] = v
         return v
     }
 
@@ -117,7 +113,7 @@ class DataStore {
      * @param keyClass DataStoreKey 的类类型
      * @return 与指定键类型关联的值列表，如果类型不存在则返回空列表
     </V> */
-    fun <V, T : DataStoreKey<V>> getAll(keyClass: Class<T>): List<V> {
+    fun <V> getAll(keyClass: Class<*>): List<V> {
         val list = keyClsMapValues[keyClass] ?: return emptyList()
         @Suppress("UNCHECKED_CAST")
         return list.toList() as List<V>
@@ -143,24 +139,13 @@ class DataStore {
         return dataMap.containsKey(key)
     }
 
-    /**
-     * 根据给定的 DataStoreKey 移除数据
-     * 从值列表中移除与键关联的值
-     *
-     * @param key 要移除的 DataStoreKey 对象
-     */
-    fun <Value> remove(key: DataStoreKey<Value>) {
-        val keyClass = key.javaClass
-        keyClsMapValues[keyClass]?.remove(dataMap.remove(key))
-        dataMap.remove(key.id())
-    }
-
-    /**
-     * 使用字符串键移除数据，内部会转换为 DataStoreKey 对象
-     *
-     * @param key 任意类型的键
-     */
     fun remove(key: Any) {
-        dataMap.remove(key)
+        if (!dataMap.containsKey(key)) return
+        val value = dataMap.remove(key)
+        if (key is Class<*>) return
+        for (superClass in getParentClassesBy(key::class.java)) {
+            val list = keyClsMapValues[superClass] ?: continue
+            list.remove(value)
+        }
     }
 }

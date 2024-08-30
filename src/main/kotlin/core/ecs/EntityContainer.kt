@@ -1,6 +1,6 @@
 package heraclius.core.ecs
 
-class EntityContainer : Entity() {
+open class EntityContainer(vararg components: EntityComponent<*>) : Entity(*components) {
     private val _entities = ArrayList<Entity>()
     val children: List<Entity> get() = this._entities.toList()
 
@@ -8,7 +8,7 @@ class EntityContainer : Entity() {
         for (entity in entities) {
             if (this.hasChild(entity)) throw RuntimeException("Entity with id ${entity.id()} already exists")
             this._entities.add(entity)
-            this.dataStore.set(entity.id(), entity)
+            this.dataStore.put(entity)
         }
     }
 
