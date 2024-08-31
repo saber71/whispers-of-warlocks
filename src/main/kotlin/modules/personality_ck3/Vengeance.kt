@@ -1,7 +1,5 @@
 package heraclius.modules.personality_ck3
 
-import heraclius.modules.personality.InnerPersonalityComponent
-
 //报复
-class Vengeance(value: Float) : InnerPersonalityComponent(value) {
+class Vengeance(value: Float) : CK3InnerPersonalityComponent(value) {
 }

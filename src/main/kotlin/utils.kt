@@ -51,7 +51,6 @@ fun getClass(obj: Any): Class<*> {
     return obj.javaClass
 }
 
-
 /**
  * 获取指定类及其所有父类的列表
  *
