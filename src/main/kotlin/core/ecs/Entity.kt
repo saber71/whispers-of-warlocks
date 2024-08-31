@@ -1,6 +1,7 @@
 package heraclius.core.ecs
 
 import heraclius.core.IDGenerator
+import heraclius.core.Symbols
 import heraclius.core.datastore.DataStore
 import heraclius.core.datastore.DataStoreKey
 
@@ -10,12 +11,15 @@ import heraclius.core.datastore.DataStoreKey
  *
  * @param components 初始化时添加的实体组件数组
  */
-open class Entity(vararg components: EntityComponent<*>) : DataStoreKey<Any>(IDGenerator.get()) {
+open class Entity(vararg components: EntityComponent<*>) : DataStoreKey<Any>(Symbols.of(IDGenerator.get().toString())) {
     // 数据存储对象，用于管理实体的组件
     protected val dataStore = DataStore()
 
     // 实体组件列表
-    private val components = ArrayList<EntityComponent<*>>()
+    private val _components = ArrayList<EntityComponent<*>>()
+
+    // 获取实体组件列表
+    val components: List<EntityComponent<*>> get() = this._components.toList()
 
     // 初始化时添加传入的组件
     init {
@@ -49,7 +53,7 @@ open class Entity(vararg components: EntityComponent<*>) : DataStoreKey<Any>(IDG
                 throw RuntimeException("Component $component already exists")
             }
             dataStore.set(component.javaClass, component)
-            this.components.add(component)
+            this._components.add(component)
         }
         return this
     }
@@ -63,7 +67,7 @@ open class Entity(vararg components: EntityComponent<*>) : DataStoreKey<Any>(IDG
     fun removeComponent(vararg components: EntityComponent<*>): Entity {
         for (component in components) {
             dataStore.remove(component.javaClass)
-            this.components.remove(component)
+            this._components.remove(component)
         }
         return this
     }
@@ -128,8 +132,8 @@ open class Entity(vararg components: EntityComponent<*>) : DataStoreKey<Any>(IDG
         return this.fetchComponent(componentClass).getValue()
     }
 
-    // 获取实体中的所有组件
-    fun getAllComponents(): List<EntityComponent<*>> {
-        return components
+    // 获取实体的符号
+    protected fun symbol(): Symbols.Symbol {
+        return id() as Symbols.Symbol
     }
 }
