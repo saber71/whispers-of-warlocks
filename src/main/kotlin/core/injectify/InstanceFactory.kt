@@ -1,8 +1,7 @@
 package heraclius.core.injectify
 
+import heraclius.Utils
 import heraclius.core.Singleton
-import heraclius.getAnnotationValue
-
 
 /**
  * 实例工厂类，实现依赖注入
@@ -38,7 +37,8 @@ object InstanceFactory {
             val parameters = constructor.parameters.map { getOrCreateInstance(it.javaClass) }
             instance = constructor.newInstance(*parameters.toTypedArray())
             val annotation =
-                getAnnotationValue(cls, Injectable::class.java) ?: throw RuntimeException("$cls is not injectable")
+                Utils.getAnnotationInstance(cls, Injectable::class.java)
+                    ?: throw RuntimeException("$cls is not injectable")
             if (annotation.singleton) {
                 instanceMap[cls] = instance as Any
                 Singleton.register(instance)

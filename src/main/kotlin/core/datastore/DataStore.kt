@@ -1,7 +1,6 @@
 package heraclius.core.datastore
 
-import heraclius.getClass
-import heraclius.getParentClasses
+import heraclius.Utils
 
 /**
  * DataStore 类用于存储和管理应用程序中的数据
@@ -18,7 +17,7 @@ class DataStore {
     private val classMapSuperClasses = HashMap<Class<*>, List<Class<*>>>()
 
     private fun getParentClassesBy(obj: Any): List<Class<*>> {
-        return classMapSuperClasses.computeIfAbsent(getClass(obj)) { _ -> getParentClasses(obj) }
+        return classMapSuperClasses.computeIfAbsent(Utils.getClass(obj)) { _ -> Utils.getParentClasses(obj) }
     }
 
     // 清除所有数据

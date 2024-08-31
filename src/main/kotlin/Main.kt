@@ -2,7 +2,6 @@ package heraclius
 
 import heraclius.core.ReflectionReactor
 import heraclius.core.Singleton
-import heraclius.core.ecs.Ecs
 import org.reflections.Reflections
 
 fun main() {
@@ -12,7 +11,7 @@ fun main() {
         val instance = Singleton.get(cls);
         instance.doReact(reflections)
     }
-    while (true) {
-        Ecs.tick()
-    }
+//    while (true) {
+//        Ecs.tick()
+//    }
 }

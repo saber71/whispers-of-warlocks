@@ -26,7 +26,8 @@ object Symbols {
         if (symbol1 == null) symbol1 = Symbol { symbolMapDescription[symbol1] }
 
         // 确保描述唯一性
-        from(description) ?: throw RuntimeException("description has repeated")
+        val oldSymbol = from(description)
+        if (oldSymbol != null) throw RuntimeException("description has repeated")
 
         // 将描述与符号关联
         symbolMapDescription[symbol1] = description

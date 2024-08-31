@@ -2,9 +2,11 @@ package heraclius.modules.time
 
 import heraclius.core.ecs.Ecs
 import heraclius.core.ecs.EntitySystem
+import heraclius.core.injectify.Injectable
 import kotlin.system.exitProcess
 
 // 时间管理系统，用于处理游戏或应用中的时间操作
+@Injectable
 class TimeSystem : EntitySystem() {
     // 初始化时间系统，创建一个带有时间相关组件的实体
     override fun init() {
@@ -27,7 +29,7 @@ class TimeSystem : EntitySystem() {
             val dateComponent = timeEntity.fetchComponent(DateComponent::class.java)
             // 根据DataPlusComponent中的值更新日期
             dateComponent.setValue(
-                dateComponent.getValue().plusYears(dataPlus.year.toLong()).plusMonths(dataPlus.monthValue.toLong())
+                dateComponent.value().plusYears(dataPlus.year.toLong()).plusMonths(dataPlus.monthValue.toLong())
                     .plusDays(dataPlus.dayOfMonth.toLong())
             )
         }
@@ -37,7 +39,7 @@ class TimeSystem : EntitySystem() {
             val timeComponent = timeEntity.fetchComponent(TimeComponent::class.java)
             // 根据TimePlusComponent中的值更新时间
             timeComponent.setValue(
-                timeComponent.getValue().plusHours(timePlus.hour.toLong()).plusMinutes(timePlus.minute.toLong())
+                timeComponent.value().plusHours(timePlus.hour.toLong()).plusMinutes(timePlus.minute.toLong())
                     .plusSeconds(timePlus.second.toLong())
             )
         }

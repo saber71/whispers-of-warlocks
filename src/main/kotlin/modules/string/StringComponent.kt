@@ -5,7 +5,7 @@ import heraclius.core.ecs.EntityComponent
 
 open class StringComponent(value: String) : EntityComponent<String>(value) {
     fun getValue(placeholderDict: Dict, wrappedSymbol: String = "$"): String {
-        var string = getValue()
+        var string = value()
         for (entry in placeholderDict) {
             string = string.replace(wrappedSymbol + entry.key + wrappedSymbol, entry.value.toString())
         }

@@ -104,7 +104,7 @@ open class Entity(vararg components: EntityComponent<*>) : DataStoreKey<Any>(Sym
      * @return 返回组件的值，如果组件不存在或值未设置，则返回null
      */
     fun <V, E : EntityComponent<V>> getComponentValue(componentClass: Class<out E>): V? {
-        return this.getComponent(componentClass)?.getValue()
+        return this.getComponent(componentClass)?.value()
     }
 
     /**
@@ -129,7 +129,7 @@ open class Entity(vararg components: EntityComponent<*>) : DataStoreKey<Any>(Sym
      * 它首先调用fetchComponent方法获取组件实例，然后调用该实例的getValue方法来返回组件的值
      */
     fun <V, E : EntityComponent<V>> fetchComponentValue(componentClass: Class<out E>): V {
-        return this.fetchComponent(componentClass).getValue()
+        return this.fetchComponent(componentClass).value()
     }
 
     // 获取实体的符号

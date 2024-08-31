@@ -1,7 +1,7 @@
 package heraclius.core.ecs
 
-abstract class EntityComponent<T>(protected var value: T) {
-    fun getValue(): T {
-        return value
+abstract class EntityComponent<T>(protected var `val`: T) {
+    fun value(): T {
+        return `val`
     }
 }
