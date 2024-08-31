@@ -27,7 +27,7 @@ object InstanceFactory {
      * @throws RuntimeException 如果检测到循环依赖。
      */
     fun <V> getOrCreateInstance(cls: Class<V>): V {
-        var instance = instanceMap.get(cls)
+        var instance = instanceMap[cls]
         if (instance == null) {
             if (instancing.contains(cls)) {
                 throw RuntimeException("Circular dependency detected: $cls")
@@ -38,8 +38,7 @@ object InstanceFactory {
             instance = constructor.newInstance(*parameters.toTypedArray())
             val annotation =
                 Utils.getAnnotationInstance(cls, Injectable::class.java)
-                    ?: throw RuntimeException("$cls is not injectable")
-            if (annotation.singleton) {
+            if (annotation == null || annotation.singleton) {
                 instanceMap[cls] = instance as Any
                 Singleton.register(instance)
             }

@@ -2,17 +2,10 @@ package heraclius.modules.time
 
 import heraclius.core.ecs.Ecs
 import heraclius.core.ecs.EntitySystem
-import heraclius.core.injectify.Injectable
 import kotlin.system.exitProcess
 
 // 时间管理系统，用于处理游戏或应用中的时间操作
-@Injectable
 class TimeSystem : EntitySystem() {
-    // 初始化时间系统，创建一个带有时间相关组件的实体
-    override fun init() {
-        Ecs.createEntity(TimeEntity::class.java, DateComponent(), TimeComponent())
-    }
-
     // 更新时间系统，根据特定组件修改实体的时间值
     override fun update() {
         // 获取第一个时间实体

@@ -82,4 +82,29 @@ object Utils {
         @Suppress("UNCHECKED_CAST")
         return clazz.annotations.find { it.annotationClass.java == annotationClass } as? A
     }
+
+    /**
+     * 合并并去重多个列表
+     *
+     * @param list 需要合并的列表参数，使用vararg关键字使得可以接收任意数量的列表参数
+     * @return 返回合并并去重后的列表
+     *
+     * 该函数的主要目的是将多个列表合并为一个列表，并去除重复的元素
+     * 如果输入的列表参数为空，则直接返回一个空列表
+     */
+    fun <V> mergeAndDistinct(vararg list: List<V>): List<V> {
+        // 检查列表是否为空，如果为空则直接返回一个空列表
+        if (list.isEmpty()) return emptyList()
+
+        // 初始化一个可变列表，用于存储合并后的结果
+        val merged = list[0].toMutableList()
+
+        // 遍历除第一个列表外的其他列表，将它们的元素添加到merged列表中
+        for (ls in list.slice(1..list.lastIndex)) {
+            merged += ls
+        }
+
+        // 返回合并后的列表，并去除重复的元素
+        return merged.distinct()
+    }
 }

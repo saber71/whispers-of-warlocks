@@ -7,6 +7,7 @@ import org.reflections.Reflections
 fun main() {
     val reflections = Reflections("heraclius")
     val classes = reflections.getSubTypesOf(ReflectionReactor::class.java)
+    println(classes)
     for (cls in classes) {
         val instance = Singleton.get(cls);
         instance.doReact(reflections)

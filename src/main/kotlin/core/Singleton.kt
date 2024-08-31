@@ -8,6 +8,16 @@ object Singleton {
     private val instances: MutableMap<Class<*>, Any> = HashMap()
 
     /**
+     * 检查指定类型的实例是否存在于容器中
+     *
+     * @param clazz 要检查的类型类对象
+     * @return 如果实例存在返回true，否则返回false
+     */
+    fun has(clazz: Class<*>): Boolean {
+        return instances.containsKey(clazz)
+    }
+
+    /**
      * 获取指定类的单例实例
      * 如果该类的实例尚不存在，则创建一个新的实例并将其存储在instances映射中。注意新建的实例的构造函数必须是无参的
      *
