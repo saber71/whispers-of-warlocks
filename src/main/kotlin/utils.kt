@@ -39,21 +39,35 @@ fun <T> readProperties(obj: Any, clazz: Class<T>): List<T> {
 }
 
 /**
+ * 获取对象的类信息
+ *
+ * @param obj 任意对象
+ * @return 对象的类信息如果对象本身就是Class类型的实例，则直接返回该对象；否则返回对象的类信息
+ *
+ * 此函数的目的是为了以统一的方式获取对象的类信息，避免直接操作java内置方法可能带来的不便或限制
+ */
+fun getClass(obj: Any): Class<*> {
+    if (obj is Class<*>) return obj
+    return obj.javaClass
+}
+
+
+/**
  * 获取指定类及其所有父类的列表
  *
- * @param clazz 初始类对象，用于获取其父类信息
+ * @param obj 初始类对象，用于获取其父类信息
  * @return 返回包含指定类及其所有父类的列表
  *
  * 此函数旨在构建一个类的继承体系列表，从指定的类开始，逐级向上获取其父类，直至Any基类
  * 这在反射操作中尤为有用，可以帮助快速了解和操作类的继承关系
  */
-fun getParentClasses(clazz: Class<*>): List<Class<*>> {
+fun getParentClasses(obj: Any): List<Class<*>> {
     // 初始化结果列表，用于存储类及其父类
     val result = ArrayList<Class<*>>()
-    // 将指定类添加到结果列表中
-    result.add(clazz)
     // 用变量cls暂存当前操作的类，初始为指定类
-    var cls = clazz
+    var cls = getClass(obj)
+    // 将指定类添加到结果列表中
+    result.add(cls)
     // 循环获取父类，直到达到Any基类时停止
     while (true) {
         // 获取当前类的父类

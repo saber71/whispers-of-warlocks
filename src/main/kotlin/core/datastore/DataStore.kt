@@ -1,5 +1,6 @@
 package heraclius.core.datastore
 
+import heraclius.getClass
 import heraclius.getParentClasses
 
 /**
@@ -16,8 +17,8 @@ class DataStore {
 
     private val classMapSuperClasses = HashMap<Class<*>, List<Class<*>>>()
 
-    private fun getParentClassesBy(cls: Class<*>): List<Class<*>> {
-        return classMapSuperClasses.computeIfAbsent(cls) { _ -> getParentClasses(cls) }
+    private fun getParentClassesBy(obj: Any): List<Class<*>> {
+        return classMapSuperClasses.computeIfAbsent(getClass(obj)) { _ -> getParentClasses(obj) }
     }
 
     // 清除所有数据
@@ -43,7 +44,7 @@ class DataStore {
         val oldValue = dataMap.put(key, v as Any)
         if (key is Class<*>) return v
         if (ignoreSuperClasses) return v
-        val superClasses = getParentClassesBy(key::class.java)
+        val superClasses = getParentClassesBy(key)
         for (superClass in superClasses) {
             val list = keyClsMapValues.computeIfAbsent(superClass) { _ -> ArrayList() }
             if (oldValue != null) {
@@ -142,8 +143,7 @@ class DataStore {
     fun remove(key: Any) {
         if (!dataMap.containsKey(key)) return
         val value = dataMap.remove(key)
-        if (key is Class<*>) return
-        for (superClass in getParentClassesBy(key::class.java)) {
+        for (superClass in getParentClassesBy(key)) {
             val list = keyClsMapValues[superClass] ?: continue
             list.remove(value)
         }
