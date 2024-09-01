@@ -33,7 +33,7 @@ object InstanceFactory {
                 throw RuntimeException("Circular dependency detected: $cls")
             }
             instancing.add(cls)
-            val constructor = cls.getDeclaredConstructor()
+            val constructor = cls.constructors[0]
             val parameters = constructor.parameters.map { getOrCreateInstance(it.javaClass) }
             instance = constructor.newInstance(*parameters.toTypedArray())
             val annotation =

@@ -9,7 +9,7 @@ import heraclius.modules.personality.PersonalityComponent
  *
  * @param value 性格值
  */
-abstract class CK3InnerPersonalityComponent(value: Float) : PersonalityComponent(value) {
+abstract class CK3InnerPersonalityComponent(value: Number) : PersonalityComponent(value) {
     // 获取 CK3 内部性格的形容词
     abstract fun getAdjectives(): Class<out CK3PersonalityDescriptionComponent>
 

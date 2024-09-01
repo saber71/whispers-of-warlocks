@@ -1,0 +1,202 @@
+[
+  {
+    "englishName": "Hardy",
+    "chineseName": "勤奋",
+    "positive": "",
+    "negative": "",
+    "preferredTaste": "",
+    "dislikeTaste": ""
+  },
+  {
+    "englishName": "Lonely",
+    "chineseName": "怕寂寞",
+    "positive": "Attack",
+    "negative": "Defence",
+    "preferredTaste": "辣",
+    "dislikeTaste": "酸"
+  },
+  {
+    "englishName": "Adamant",
+    "chineseName": "固执",
+    "positive": "Attack",
+    "negative": "SpecialAttack",
+    "preferredTaste": "辣",
+    "dislikeTaste": "涩"
+  },
+  {
+    "englishName": "Naughty",
+    "chineseName": "顽皮",
+    "positive": "Attack",
+    "negative": "SpecialDefence",
+    "preferredTaste": "辣",
+    "dislikeTaste": "苦"
+  },
+  {
+    "englishName": "Brave",
+    "chineseName": "勇敢",
+    "positive": "Attack",
+    "negative": "Speed",
+    "preferredTaste": "辣",
+    "dislikeTaste": "甜"
+  },
+  {
+    "englishName": "Docile",
+    "chineseName": "坦率",
+    "positive": "",
+    "negative": "",
+    "preferredTaste": "",
+    "dislikeTaste": ""
+  },
+  {
+    "englishName": "Bold",
+    "chineseName": "大胆",
+    "positive": "Defence",
+    "negative": "Attack",
+    "preferredTaste": "酸",
+    "dislikeTaste": "辣"
+  },
+  {
+    "englishName": "Impish",
+    "chineseName": "淘气",
+    "positive": "Defence",
+    "negative": "SpecialAttack",
+    "preferredTaste": "酸",
+    "dislikeTaste": "涩"
+  },
+  {
+    "englishName": "Lax",
+    "chineseName": "乐天",
+    "positive": "Defence",
+    "negative": "SpecialDefence",
+    "preferredTaste": "酸",
+    "dislikeTaste": "苦"
+  },
+  {
+    "englishName": "Relaxed",
+    "chineseName": "悠闲",
+    "positive": "Defence",
+    "negative": "Speed",
+    "preferredTaste": "酸",
+    "dislikeTaste": "甜"
+  },
+  {
+    "englishName": "Modest",
+    "chineseName": "内敛",
+    "positive": "SpecialAttack",
+    "negative": "Attack",
+    "preferredTaste": "涩",
+    "dislikeTaste": "辣"
+  },
+  {
+    "englishName": "Mild",
+    "chineseName": "慢吞吞",
+    "positive": "SpecialAttack",
+    "negative": "Defence",
+    "preferredTaste": "涩",
+    "dislikeTaste": "酸"
+  },
+  {
+    "englishName": "Bashful",
+    "chineseName": "害羞",
+    "positive": "",
+    "negative": "",
+    "preferredTaste": "",
+    "dislikeTaste": ""
+  },
+  {
+    "englishName": "Rash",
+    "chineseName": "马虎",
+    "positive": "SpecialAttack",
+    "negative": "SpecialDefence",
+    "preferredTaste": "涩",
+    "dislikeTaste": "苦"
+  },
+  {
+    "englishName": "Quiet",
+    "chineseName": "冷静",
+    "positive": "SpecialAttack",
+    "negative": "Speed",
+    "preferredTaste": "涩",
+    "dislikeTaste": "甜"
+  },
+  {
+    "englishName": "Calm",
+    "chineseName": "温和",
+    "positive": "SpecialDefence",
+    "negative": "Attack",
+    "preferredTaste": "苦",
+    "dislikeTaste": "辣"
+  },
+  {
+    "englishName": "Gentle",
+    "chineseName": "温顺",
+    "positive": "SpecialDefence",
+    "negative": "Defence",
+    "preferredTaste": "苦",
+    "dislikeTaste": "酸"
+  },
+  {
+    "englishName": "Careful",
+    "chineseName": "慎重",
+    "positive": "SpecialDefence",
+    "negative": "SpecialAttack",
+    "preferredTaste": "苦",
+    "dislikeTaste": "涩"
+  },
+  {
+    "englishName": "Quirky",
+    "chineseName": "浮躁",
+    "positive": "",
+    "negative": "",
+    "preferredTaste": "",
+    "dislikeTaste": ""
+  },
+  {
+    "englishName": "Sassy",
+    "chineseName": "自大",
+    "positive": "SpecialDefence",
+    "negative": "Speed",
+    "preferredTaste": "苦",
+    "dislikeTaste": "甜"
+  },
+  {
+    "englishName": "Timid",
+    "chineseName": "胆小",
+    "positive": "Speed",
+    "negative": "Attack",
+    "preferredTaste": "甜",
+    "dislikeTaste": "辣"
+  },
+  {
+    "englishName": "Hasty",
+    "chineseName": "急躁",
+    "positive": "Speed",
+    "negative": "Defence",
+    "preferredTaste": "甜",
+    "dislikeTaste": "酸"
+  },
+  {
+    "englishName": "Jolly",
+    "chineseName": "爽朗",
+    "positive": "Speed",
+    "negative": "SpecialAttack",
+    "preferredTaste": "甜",
+    "dislikeTaste": "涩"
+  },
+  {
+    "englishName": "Naive",
+    "chineseName": "天真",
+    "positive": "Speed",
+    "negative": "SpecialDefence",
+    "preferredTaste": "甜",
+    "dislikeTaste": "苦"
+  },
+  {
+    "englishName": "Serious",
+    "chineseName": "认真",
+    "positive": "",
+    "negative": "",
+    "preferredTaste": "",
+    "dislikeTaste": ""
+  }
+]

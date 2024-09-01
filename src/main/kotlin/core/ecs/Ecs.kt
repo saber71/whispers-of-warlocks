@@ -79,8 +79,10 @@ object Ecs {
      * @return 创建的实体实例。
      */
     fun <E : Entity> createEntity(cls: Class<E>, vararg components: EntityComponent<*>): E {
-        val constructor = cls.getConstructor(*components.map { it.javaClass }.toTypedArray())
-        val entity = constructor.newInstance(*components)
+        val constructor = cls.constructors[0]
+
+        @Suppress("UNCHECKED_CAST")
+        val entity = constructor.newInstance(components) as E
         dataStore.put(entity)
         return entity
     }

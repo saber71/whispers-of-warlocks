@@ -1,6 +1,7 @@
 package heraclius.modules.time
 
 import heraclius.core.ecs.Entity
+import heraclius.core.ecs.EntityComponent
 
-class TimeEntity(date: DateComponent, time: TimeComponent) : Entity(date, time) {
+class TimeEntity(vararg components: EntityComponent<*>) : Entity(*components) {
 }
