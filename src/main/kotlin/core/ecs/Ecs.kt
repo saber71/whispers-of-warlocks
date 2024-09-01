@@ -85,10 +85,9 @@ object Ecs {
         return entity
     }
 
-    // 创建一个带有指定组件的实体，并返回Ecs对象以支持链式调用。
-    fun <E : Entity> new(cls: Class<E>, vararg components: EntityComponent<*>): Ecs {
-        createEntity(cls, *components)
-        return this
+    // 创建一个实体工厂，用于创建实体并添加组件
+    fun <E : Entity> entityFactory(cls: Class<E>): Factory<E> {
+        return Factory(cls)
     }
 
     /**
@@ -97,5 +96,12 @@ object Ecs {
      */
     fun tick() {
         systemList.forEach { it.update() }
+    }
+
+    class Factory<E : Entity>(private val cls: Class<E>) {
+        fun new(vararg components: EntityComponent<*>): Factory<E> {
+            Ecs.createEntity(cls, *components)
+            return this
+        }
     }
 }

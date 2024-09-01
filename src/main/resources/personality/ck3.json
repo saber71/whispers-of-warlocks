@@ -1,0 +1,254 @@
+[
+  {
+    "englishName": "brave",
+    "chineseName": "勇敢",
+    "description": " 挑战或是危险？该角色无所畏惧。",
+    "inner": "+200 胆量\n+20 精力\n−20 理性\n+20 社交力",
+    "mutex": ["craven"]
+  },
+  {
+    "englishName": "craven",
+    "chineseName": "怯懦",
+    "description": "该角色一点也不喜欢受到挑战或是惊吓。",
+    "inner": "−200 胆量\n−20 精力\n+10 理性\n−20 社交力",
+    "mutex": ["brave"]
+  },
+  {
+    "englishName": "calm",
+    "chineseName": "冷静",
+    "description": "该角色做事从容，过着慢节奏的生活。",
+    "inner": "−20 胆量\n−10 精力\n+75 理性\n−10 报复",
+    "mutex": ["wrathful"]
+  },
+  {
+    "englishName": "wrathful",
+    "chineseName": "暴怒",
+    "description": "该角色很容易发怒。",
+    "inner": "+35 胆量\n−20 怜悯\n+10 精力\n−35 理性\n+20 报复",
+    "mutex": ["calm"]
+  },
+  {
+    "englishName": "chaste",
+    "chineseName": "忠贞",
+    "description": "该角色不喜欢亲密的接触，这使其避开了肉体的诱惑。",
+    "inner": "+10 精力\n−20 贪婪\n+20 荣誉\n−20 社交力\n+10 狂热",
+    "mutex": ["lustful"]
+  },
+  {
+    "englishName": "lustful",
+    "chineseName": "色欲",
+    "description": "肉欲之火在该角色的灵魂中熊熊燃烧。",
+    "inner": "+10 精力\n+20 贪婪\n−10 荣誉\n+35 社交力\n−10 狂热\n",
+    "mutex": ["chaste"]
+  },
+  {
+    "englishName": "content",
+    "chineseName": "安于现状",
+    "description": "无论是多是少，该角色拥有的已然足够。",
+    "inner": "−50 胆量\n−50 精力\n−75 贪婪\n+10 荣誉\n−10 社交力\n−10 报复\n−10 狂热",
+    "mutex": ["ambitious"]
+  },
+  {
+    "englishName": "ambitious",
+    "chineseName": "野心勃勃",
+    "description": "该角色知其所求，绝不踟蹰不前。",
+    "inner": "+50 胆量\n+75 精力\n+75 贪婪\n−20 荣誉\n+20 社交力\n+10 狂热",
+    "mutex": ["content"]
+  },
+  {
+    "englishName": "diligent",
+    "chineseName": "勤勉",
+    "description": "该角色不会逃避艰苦的工作。",
+    "inner": "+35 胆量\n+75 精力\n+20 理性\n+10 报复",
+    "mutex": ["lazy"]
+  },
+  {
+    "englishName": "lazy",
+    "chineseName": "懒惰",
+    "description": "该角色总是会选择生活中最简单的路。",
+    "inner": "−20 胆量\n−10 怜悯\n−50 精力\n+10 贪婪\n−10 社交力\n−10 报复",
+    "mutex": ["diligent"]
+  },
+  {
+    "englishName": "forgiving",
+    "chineseName": "宽宏大量",
+    "description": "该角色能很快从大多数事情中走出来。",
+    "inner": "+50 怜悯\n−10 精力\n+20 荣誉\n+10 理性\n−200 报复",
+    "mutex": ["vengeful"]
+  },
+  {
+    "englishName": "vengeful",
+    "chineseName": "睚眦必报",
+    "description": "该角色很难忘掉怠慢和别人犯下的错误。",
+    "inner": "−20 怜悯\n+10 精力\n−10 荣誉\n−10 理性\n+200 报复",
+    "mutex": ["forgiving"]
+  },
+  {
+    "englishName": "generous",
+    "chineseName": "慷慨",
+    "description": "该角色对慈善行为并不陌生。",
+    "inner": "+35 怜悯\n−200 贪婪\n+20 荣誉\n+10 社交力",
+    "mutex": ["greedy"]
+  },
+  {
+    "englishName": "greedy",
+    "chineseName": "贪婪",
+    "description": "该角色坚持捂紧自己的钱包，并总在找机会充盈它。",
+    "inner": "−20 怜悯\n+200 贪婪\n−10 荣誉\n",
+    "mutex": ["generous"]
+  },
+  {
+    "englishName": "gregarious",
+    "chineseName": "合群",
+    "description": "该角色喜欢与他人共度时光。",
+    "inner": "+20 胆量\n+35 怜悯\n+200 社交力",
+    "mutex": ["shy"]
+  },
+  {
+    "englishName": "shy",
+    "chineseName": "害羞",
+    "description": "该角色更喜欢避免与他人互动。",
+    "inner": "−20 胆量\n−200 社交力\n−10 报复\n−10 狂热",
+    "mutex": ["gregarious"]
+  },
+  {
+    "englishName": "honest",
+    "chineseName": "诚实",
+    "description": "该角色非常重视事实与真诚。",
+    "inner": "+10 胆量\n+10 怜悯\n+50 荣誉\n+20 社交力",
+    "mutex": ["deceitful"]
+  },
+  {
+    "englishName": "deceitful",
+    "chineseName": "狡诈",
+    "description": "撒谎和欺骗是该角色的天性。",
+    "inner": "−10 胆量\n−10 怜悯\n−50 荣誉\n+10 理性",
+    "mutex": ["honest"]
+  },
+  {
+    "englishName": "humble",
+    "chineseName": "谦卑",
+    "description": "该角色在生活中所求不多。",
+    "inner": "+20 怜悯\n−10 精力\n−50 贪婪\n+20 荣誉",
+    "mutex": ["arrogant"]
+  },
+  {
+    "englishName": "arrogant",
+    "chineseName": "傲慢",
+    "description": "该角色毫不怀疑自己的价值。",
+    "inner": "+35 胆量\n−20 怜悯\n+10 精力\n+20 贪婪\n−20 荣誉\n−20 理性\n+20 社交力",
+    "mutex": ["humble"]
+  },
+  {
+    "englishName": "just",
+    "chineseName": "公正",
+    "description": "该角色有强烈的正义感。",
+    "inner": "+200 荣誉\n+20 理性\n+10 报复\n+10 狂热",
+    "mutex": ["arbitrary"]
+  },
+  {
+    "englishName": "arbitrary",
+    "chineseName": "专断",
+    "description": "该角色我行我素，不考虑他人。",
+    "inner": "+10 胆量\n−10 怜悯\n−200 荣誉\n−20 理性\n−10 狂热",
+    "mutex": ["just"]
+  },
+  {
+    "englishName": "patient",
+    "chineseName": "耐心",
+    "description": "静观其变、等待时机是该角色的专长。",
+    "inner": "−20 胆量\n−10 精力\n+35 理性\n+10 报复",
+    "mutex": ["impatient"]
+  },
+  {
+    "englishName": "impatient",
+    "chineseName": "急躁",
+    "description": "该角色认为大多数事情越快发生越好，最好现在就发生。",
+    "inner": "+20 胆量\n+10 精力\n−35 理性\n−10 报复",
+    "mutex": ["patient"]
+  },
+  {
+    "englishName": "temperate",
+    "chineseName": "节制",
+    "description": "该角色认为最好适度地享受事物。",
+    "inner": "+10 精力\n−35 贪婪\n−10 报复\n",
+    "mutex": ["gluttonous"]
+  },
+  {
+    "englishName": "gluttonous",
+    "chineseName": "暴食",
+    "description": "该角色嘲笑适度；全都要。",
+    "inner": "−10 精力\n+35 贪婪",
+    "mutex": ["temperate"]
+  },
+  {
+    "englishName": "trusting",
+    "chineseName": "轻信他人",
+    "description": "该角色很容易相信他人。",
+    "inner": "+20 怜悯\n+50 荣誉\n−20 理性\n+50 社交力\n−20 报复",
+    "mutex": ["paranoid"]
+  },
+  {
+    "englishName": "paranoid",
+    "chineseName": "多疑",
+    "description": "该角色在每处阴影中都会看到敌人。",
+    "inner": "−10 怜悯\n−20 荣誉\n−20 理性\n−50 社交力\n+20 报复",
+    "mutex": ["trusting"]
+  },
+  {
+    "englishName": "zealous",
+    "chineseName": "狂热",
+    "description": "宗教信仰在该角色心中燃烧着闪耀的光芒。",
+    "inner": "+20 精力\n−20 理性\n+200 狂热",
+    "mutex": ["cynical"]
+  },
+  {
+    "englishName": "cynical",
+    "chineseName": "愤世嫉俗",
+    "description": "该角色相信个人利益高于一切。",
+    "inner": "−10 怜悯\n−20 精力\n+50 理性\n−200 狂热",
+    "mutex": ["zealous"]
+  },
+  {
+    "englishName": "compassionate",
+    "chineseName": "慈悲",
+    "description": "该角色既仁慈又有同情心，是个热心的人。",
+    "inner": "+200 怜悯\n−20 贪婪\n+50 荣誉\n+50 社交力",
+    "mutex": ["callous", "sadistic"]
+  },
+  {
+    "englishName": "callous",
+    "chineseName": "冷酷",
+    "description": "该角色冷血又无情，对大多数人漠不关心。",
+    "inner": "−200 怜悯\n−50 荣誉\n+10 理性\n−10 社交力",
+    "mutex": ["compassionate"]
+  },
+  {
+    "englishName": "sadistic",
+    "chineseName": "虐待狂",
+    "description": "没什么能比别人的痛苦更能带给该角色快乐了。",
+    "inner": "−200 怜悯\n−75 荣誉",
+    "mutex": ["compassionate"]
+  },
+  {
+    "englishName": "fickle",
+    "chineseName": "多变",
+    "description": "该角色经常改变想法，让人难以预料。",
+    "inner": "+20 胆量\n−20 荣誉\n−20 理性\n−20 报复\n",
+    "mutex": ["stubborn"]
+  },
+  {
+    "englishName": "eccentric",
+    "chineseName": "怪客",
+    "description": "该角色的行为在其他人看来不稳定、不理性，但相较于彻底的疯狂又存在一定的章法。",
+    "inner": "-20荣誉\n-200理性\n-20社交力",
+    "mutex": ["stubborn"]
+  },
+  {
+    "englishName": "stubborn",
+    "chineseName": "固执",
+    "description": "该角色不会为任何事让步。",
+    "inner": "+50 荣誉\n−10 理性\n+50 报复\n",
+    "mutex": ["fickle", "eccentric"]
+  }
+]
