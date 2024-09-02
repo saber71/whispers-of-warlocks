@@ -13,6 +13,11 @@ object Symbols {
     // 使用WeakHashMap存储描述和符号的映射关系，允许GC回收不再使用的描述。
     private val descriptionMapSymbol = WeakHashMap<String?, WeakReference<Symbol>>()
 
+    // 获取或创建一个符号，如果已存在则返回该符号。
+    fun use(description: String?): Symbol {
+        return from(description) ?: of(description)
+    }
+
     /**
      * 创建或获取一个符号，并将其与描述关联。
      *
@@ -43,8 +48,6 @@ object Symbols {
      * @return 匹配的符号及其描述的Map.Entry，如果未找到则返回null。
      */
     fun from(description: String?): Symbol? {
-        if (description.isNullOrEmpty()) return null
-
         return descriptionMapSymbol[description]?.get()
     }
 

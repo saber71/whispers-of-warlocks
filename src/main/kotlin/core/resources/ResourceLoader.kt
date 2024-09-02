@@ -1,6 +1,7 @@
 package heraclius.core.resources
 
 import java.io.File
+import java.nio.file.Path
 
 /**
  * 资源加载器对象，提供了一种从类路径中加载资源文件的机制
@@ -8,6 +9,19 @@ import java.io.File
 object ResourceLoader {
     // 缓存已加载的资源，避免重复加载同一个资源
     private val resourceCache = mutableMapOf<String, Resource>()
+
+    /**
+     * 根据给定的路径加载资源
+     *
+     * 此函数提供了一种根据路径字符串加载资源的方式它将路径转换为字符串，
+     * 然后调用另一个重载的 `load` 函数来完成实际的资源加载操作
+     *
+     * @param path 资源的路径，类型为 `Path`，表示资源在文件系统中的位置
+     * @return 返回一个 `Resource` 对象，表示加载的资源
+     */
+    fun load(path: Path): Resource {
+        return load(path.toString())
+    }
 
     /**
      * 加载指定路径的资源文件
