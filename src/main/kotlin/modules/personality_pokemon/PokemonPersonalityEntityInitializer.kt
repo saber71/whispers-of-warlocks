@@ -5,9 +5,9 @@ import heraclius.core.ecs.EntityComponent
 import heraclius.core.ecs.EntityInitializer
 import heraclius.core.resources.ResourceLoader
 import heraclius.core.value.Value
-import heraclius.core.value.Values
 import heraclius.modules.string.ChineseNameComponent
 import heraclius.modules.string.EnglishNameComponent
+import heraclius.paramters.PokemonParameters
 import java.nio.file.Paths
 
 /**
@@ -20,9 +20,6 @@ class PokemonPersonalityEntityInitializer : EntityInitializer() {
      * 从指定的JSON文件加载性格数据，并为每个性格创建实体
      */
     override fun init() {
-        // 创建正向和负向增益参数
-        val positiveValue = Values.ofImmutable<Number>(0.1, "pokemon.personality.positiveFactor")
-        val negativeValue = Values.ofImmutable<Number>(-0.1, "pokemon.personality.negativeFactor")
         // 创建精灵宝可梦性格实体的工厂
         val factory = Ecs.entityFactory(PokemonPersonalityEntity::class.java)
         // 从资源文件加载宝可梦性格数据
@@ -37,11 +34,11 @@ class PokemonPersonalityEntityInitializer : EntityInitializer() {
             )
             // 根据性格的正面属性设置内在因素组件
             if (data.positive.isNotEmpty()) {
-                setupInnerFactor(list, data.positive, positiveValue)
+                setupInnerFactor(list, data.positive, PokemonParameters.PERSONALITY_POSITIVE_FACTOR())
             }
             // 根据性格的负面属性设置内在因素组件
             if (data.negative.isNotEmpty()) {
-                setupInnerFactor(list, data.negative, negativeValue)
+                setupInnerFactor(list, data.negative, PokemonParameters.PERSONALITY_NEGATIVE_FACTOR())
             }
             // 如果性格有偏好口味，添加相应组件
             if (data.preferredTaste.isNotEmpty()) {

@@ -11,7 +11,7 @@ open class PersonalityEntity(vararg components: EntityComponent<*>) : Entity(*co
         for (component in components) {
             if (component is NameComponent) {
                 // 使用NameComponent的值设置id值
-                Symbols.of(component.value(), symbol())
+                Symbols.of(component.value(), null, symbol())
                 break
             }
         }
