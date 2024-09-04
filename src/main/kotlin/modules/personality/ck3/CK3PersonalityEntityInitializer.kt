@@ -1,10 +1,10 @@
 package heraclius.modules.personality.ck3
 
 import heraclius.core.ecs.Ecs
+import heraclius.core.ecs.EntityComponentFactory
 import heraclius.core.ecs.EntityInitializer
 import heraclius.core.resources.ResourceLoader
 import heraclius.modules.personality.MutexPersonalityComponent
-import heraclius.modules.personality.personality_ck3.*
 import heraclius.modules.string.ChineseNameComponent
 import heraclius.modules.string.DescriptionComponent
 import heraclius.modules.string.EnglishNameComponent
@@ -31,19 +31,8 @@ class CK3PersonalityEntityInitializer : EntityInitializer() {
         for (data in personalityDataArray) {
             // 提取并转换个性数据中的组件数据
             val components = data.getInner()
-                .mapNotNull { (value, name) ->
-                    when (name) {
-                        "报复" -> VengeanceComponent(value)
-                        "怜悯" -> PityComponent(value)
-                        "精力" -> VitalityComponent(value)
-                        "胆量" -> CourageComponent(value)
-                        "社交" -> SocialComponent(value)
-                        "理性" -> RationalComponent(value)
-                        "贪婪" -> GreedComponent(value)
-                        "狂热" -> FanaticismComponent(value)
-                        "荣誉" -> HonorComponent(value)
-                        else -> null
-                    }
+                .map { (value, name) ->
+                    EntityComponentFactory.create<CK3InnerPersonalityComponent>(name, value)
                 }
 
             // 使用工厂方法创建实体，并设置各种组件

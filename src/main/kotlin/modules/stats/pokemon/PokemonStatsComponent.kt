@@ -1,4 +1,4 @@
-package heraclius.modules.stats_pokemon
+package heraclius.modules.stats.pokemon
 
 import heraclius.modules.stats.StatsComponent
 

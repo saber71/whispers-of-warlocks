@@ -1,4 +1,4 @@
-package heraclius.modules.stats_ck3
+package heraclius.modules.stats.ck3
 
 //勇武
 class Valor(value: Number) : CK3StatsComponent(value) {

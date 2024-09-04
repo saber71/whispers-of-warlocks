@@ -1,6 +1,8 @@
 package heraclius.modules.personality.ck3
 
-//胆量
+import heraclius.core.ecs.EntityComponentDescriptor
+
+@EntityComponentDescriptor("胆量")
 class CourageComponent(value: Number) : CK3InnerPersonalityComponent(value) {
     override fun getAdjectives(): Class<out CK3PersonalityDescriptionComponent> {
         return CourageAdjectiveComponent::class.java

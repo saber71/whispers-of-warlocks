@@ -46,6 +46,28 @@ object Utils {
     }
 
     /**
+     * 检查指定的类是否是另一个类的子类。
+     *
+     * 该函数通过检查`clazz`参数是否是`parentCls`参数的子类来实现。
+     * 它通过遍历类的继承链直到`Any`类（Kotlin中所有类的超类，对应Java的`Object`类）来完成这个检查过程。
+     *
+     * @param clazz 要检查的类。
+     * @param parentCls 要检查的潜在父类。
+     * @return 如果`clazz`是`parentCls`的子类，则返回`true`；否则返回`false`。
+     */
+    fun instanceof(clazz: Class<*>, parentCls: Class<*>): Boolean {
+        var cls = clazz
+        while (true) {
+            val parentClass = cls.superclass
+            if (parentClass == Any::class.java) break
+            if (parentClass == parentCls) return true
+            cls = parentClass
+        }
+        return false
+    }
+
+
+    /**
      * 读取指定类的所有属性，并返回一个列表，其中包含这些属性的值。
      *
      * @param obj 要读取属性的对象

@@ -2,10 +2,10 @@ package heraclius.modules.personality.pokemon
 
 import heraclius.core.ecs.Ecs
 import heraclius.core.ecs.EntityComponent
+import heraclius.core.ecs.EntityComponentFactory
 import heraclius.core.ecs.EntityInitializer
 import heraclius.core.resources.ResourceLoader
 import heraclius.core.value.Value
-import heraclius.modules.personality.personality_pokemon.*
 import heraclius.modules.string.ChineseNameComponent
 import heraclius.modules.string.EnglishNameComponent
 import heraclius.paramters.PokemonParameters
@@ -59,17 +59,10 @@ class PokemonPersonalityEntityInitializer : EntityInitializer() {
      * 根据属性名称和数值添加对应的内在因素组件到实体组件列表中
      *
      * @param list 实体组件列表
-     * @param factor 属性名称
+     * @param factorName 属性名称
      * @param value 属性数值
      */
-    private fun setupInnerFactor(list: MutableList<EntityComponent<*>>, factor: String, value: Value<Number>) {
-        when (factor) {
-            "Attack" -> list.add(InnerAttackFactor(value))
-            "Defence" -> list.add(InnerDefenseFactor(value))
-            "SpecialAttack" -> list.add(InnerSpecialAttackFactor(value))
-            "SpecialDefence" -> list.add(InnerSpecialDefenseFactor(value))
-            "Speed" -> list.add(InnerSpeedFactor(value))
-            "HP" -> list.add(InnerHPFactor(value))
-        }
+    private fun setupInnerFactor(list: MutableList<EntityComponent<*>>, factorName: String, value: Value<Number>) {
+        list.add(EntityComponentFactory.create(factorName, value))
     }
 }

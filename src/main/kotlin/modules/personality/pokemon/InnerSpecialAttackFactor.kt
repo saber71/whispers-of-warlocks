@@ -1,7 +1,8 @@
 package heraclius.modules.personality.pokemon
 
+import heraclius.core.ecs.EntityComponentDescriptor
 import heraclius.core.value.Value
 
-//特攻
+@EntityComponentDescriptor("InnerSpecialAttack")
 class InnerSpecialAttackFactor(value: Value<Number>) : PokemonInnerPersonalityComponent(value) {
 }

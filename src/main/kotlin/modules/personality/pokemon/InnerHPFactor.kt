@@ -1,7 +1,8 @@
 package heraclius.modules.personality.pokemon
 
+import heraclius.core.ecs.EntityComponentDescriptor
 import heraclius.core.value.Value
 
-//生命值
+@EntityComponentDescriptor("InnerHP")
 class InnerHPFactor(value: Value<Number>) : PokemonInnerPersonalityComponent(value) {
 }

@@ -1,4 +1,4 @@
-package heraclius.modules.stats_ck3
+package heraclius.modules.stats.ck3
 
 import heraclius.modules.stats.StatsComponent
 

@@ -23,6 +23,8 @@ class ECSReflectionReactor : ReflectionReactor() {
     override fun doReactImpl(reflections: Reflections) {
         // 加载依赖项，确保能正确的加载依赖
         DependenciesLoader.doReact(reflections)
+        // 初始化组件工厂
+        EntityComponentFactory.init(reflections)
         // 获取所有 EntitySystem 的子类
         val systemClasses = reflections.getSubTypesOf(EntitySystem::class.java)
         // 获取所有 EntityInitializer 的子类
